@@ -27,5 +27,21 @@ public class ContactsApp {
 
                 int userInput = scanner.nextInt();
 
+                if (userInput == 1) {
+                        System.out.println("User selected 1");
+                }
+                if (userInput == 2) {
+                        System.out.println("User selected 2");
+                }
+                if (userInput == 3) {
+                        System.out.println("User selected 3");
+                }
+                if (userInput == 4) {
+                        System.out.println("User selected 4");
+                }
+                if (userInput == 5) {
+                        System.out.println("User selected 5");
+                }
+
         }
 }
