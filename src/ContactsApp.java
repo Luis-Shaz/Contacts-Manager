@@ -1,3 +1,5 @@
+package src;
+
 import src.ContactsManager;
 
 import java.io.File;
@@ -15,8 +17,13 @@ public class ContactsApp {
                 //      public static boolean exitApp
                 //      private static input
 
-                String filePath = "data";
-                Path path = Paths.get("data");
+                String directory = "data";
+                String filename = "contacts.txt";
+
+                Path path = Paths.get(directory);
+                Path dataFile = Paths.get(directory, filename);
+
+                System.out.println(dataFile);
 
                 System.out.println("1. View contacts.");
                 System.out.println("2. Add a new contact.");
