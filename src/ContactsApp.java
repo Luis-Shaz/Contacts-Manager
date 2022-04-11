@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -32,9 +33,14 @@ public class ContactsApp {
 
                 List<String> contactsFile = Files.readAllLines(dataFile);
 
+                System.out.println("Name  | Phone Number");
+                System.out.println("__________________________");
+
                 for (int i = 0; i < contactsFile.size(); i += 1) {
                     System.out.println((i + 1) + ": " + contactsFile.get(i));
                 }
+
+                System.out.println("__________________________");
 
             } catch (IOException error) {
 
@@ -92,7 +98,7 @@ public class ContactsApp {
             }
         }
 
-        public static void deleteContact(String name){
+        public static String deleteContact(String name){
 
             String directory = "data";
             String filename = "contacts.txt";
@@ -102,38 +108,51 @@ public class ContactsApp {
 
                 List<String> contactsFile = Files.readAllLines(dataFile);
 
+                List<String> newList = new ArrayList<>();
+
                 for (int i = 0; i < contactsFile.size(); i += 1) {
 
+
                     if (contactsFile.get(i).contains(name)){
-                        System.out.println("Contact found!");
-                        System.out.println(contactsFile.get(i));
+                       continue;
                     }
 
                     if (i == contactsFile.size()-1 && !contactsFile.get(i).contains(name)) {
                         System.out.println("Name not found.");
+                        return "";
                     }
+
+                    newList.add(contactsFile.get(i));
 
                 }
 
+                Files.write(dataFile, newList);
+                System.out.println("Name has been deleted");
+
             } catch (IOException error) {
 
-                System.err.println("Name not found");
+                System.out.println("Name not found");
 
             }
+            return "";
         }
 
         public static void menu() {
-            Input userSelection = new Input();
 
-            System.out.println("1. View contacts.");
-            System.out.println("2. Add a new contact.");
-            System.out.println("3. Search a contact by name.");
-            System.out.println("4. Delete an existing contact.");
-            System.out.println("5. Exit.");
-            System.out.println("Enter an option (1, 2, 3, 4 or 5):");
+            while (true) {
 
 
-            int userInput = userSelection.getInt();
+                Input userSelection = new Input();
+
+                System.out.println("1. View contacts.");
+                System.out.println("2. Add a new contact.");
+                System.out.println("3. Search a contact by name.");
+                System.out.println("4. Delete an existing contact.");
+                System.out.println("5. Exit.");
+                System.out.println("Enter an option (1, 2, 3, 4 or 5):");
+
+
+                int userInput = userSelection.getInt();
 
                 if (userInput == 1) {
                     showContacts();
@@ -157,9 +176,12 @@ public class ContactsApp {
                     deleteContact(name);
                 }
                 if (userInput == 5) {
-                        System.out.println("User selected 5");
+                    System.out.println("Now exiting contact list");
+                    break;
+
                 }
             }
+        }
 
 
 }
