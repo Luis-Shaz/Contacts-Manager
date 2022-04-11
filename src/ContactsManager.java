@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ContactsManager {
     public static void main(String[] args) {
-        System.out.println("Hello World");
+
     }
 
 
