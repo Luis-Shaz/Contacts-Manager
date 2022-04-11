@@ -33,14 +33,14 @@ public class ContactsApp {
 
                 List<String> contactsFile = Files.readAllLines(dataFile);
 
-                System.out.println("Name  | Phone Number");
-                System.out.println("__________________________");
+                System.out.println("Name         |        Phone Number");
+                System.out.println("__________________________________");
 
                 for (int i = 0; i < contactsFile.size(); i += 1) {
                     System.out.println((i + 1) + ": " + contactsFile.get(i));
                 }
 
-                System.out.println("__________________________");
+                System.out.println("__________________________________");
 
             } catch (IOException error) {
 
